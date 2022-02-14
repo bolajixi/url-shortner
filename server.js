@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 
 app.get("/", async (req, res) => {
 	const shortUrls = await shortUrl.find();
-	res.render("index", { shortUrls: shortUrls });
+	res.render("index", { shortUrlsList: shortUrls });
 });
 
 app.post("/shortUrls", async (req, res) => {
@@ -24,6 +24,16 @@ app.post("/shortUrls", async (req, res) => {
 		fullUrl: req.body.fullURL,
 	});
 	res.redirect("/");
+});
+
+app.get("/:shortUrl", async (req, res) => {
+	const _shortUrl = await shortUrl.findOne({ shortUrl: req.params.shortUrl });
+	if (_shortUrl == null) return res.sendStatus(404);
+
+	_shortUrl.clicks++;
+	_shortUrl.save();
+
+	res.redirect(_shortUrl.fullUrl);
 });
 
 const port = process.env.PORT || 3000;
