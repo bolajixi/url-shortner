@@ -6,7 +6,7 @@ const shortUrl = require("./models/shortUrls");
 const shortId = require("shortid");
 
 mongoose
-	.connect(process.env.mongo_DB, {
+	.connect(process.env.DATABASE, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
