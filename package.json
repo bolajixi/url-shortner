@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/bolajixi/url-shortner/issues"
   },
-  "homepage": "https://github.com/bolajixi/url-shortner#readme"
+  "homepage": "https://github.com/bolajixi/url-shortner#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.1"
+  }
 }
