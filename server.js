@@ -3,6 +3,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 const shortUrl = require("./models/shortUrls");
+const shortId = require("shortid");
 
 mongoose.connect("mongodb://localhost/urlShortner", {
 	useNewUrlParser: true,
@@ -20,8 +21,12 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/shortUrls", async (req, res) => {
+	const id = shortId.generate();
+
 	await shortUrl.create({
 		fullUrl: req.body.fullURL,
+		shortUrl: id,
+		expandedShortUrl: `${req.headers.host}/${id}`,
 	});
 	res.redirect("/");
 });
