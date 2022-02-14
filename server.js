@@ -5,10 +5,13 @@ const mongoose = require("mongoose");
 const shortUrl = require("./models/shortUrls");
 const shortId = require("shortid");
 
-mongoose.connect("mongodb://localhost/urlShortner", {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
+mongoose
+	.connect(process.env.mongo_DB, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(() => console.log("Connected to Atlas DB"))
+	.catch(() => new Error("Could not connect to database"));
 
 app.use(express.urlencoded({ extended: false }));
 
