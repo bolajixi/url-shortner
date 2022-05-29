@@ -14,7 +14,7 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
-	.then(() => console.log("Connected to Atlas DB"))
+	.then(() => console.log("Connected to Atlas DB..."))
 	.catch(() => new Error("Could not connect to database"));
 
 app.use(express.urlencoded({ extended: false }));
