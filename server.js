@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+
 const express = require("express");
 const app = express();
 
@@ -5,8 +7,10 @@ const mongoose = require("mongoose");
 const shortUrl = require("./models/shortUrls");
 const shortId = require("shortid");
 
+dotenv.config()
+
 mongoose
-	.connect(process.env.DATABASE, {
+	.connect(process.env.MONGO_DB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
